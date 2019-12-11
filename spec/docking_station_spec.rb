@@ -20,17 +20,17 @@ describe DockingStation do
     expect(subject.release_bike).to eq [bike]
   end
 
-  it 'Dock second bike' do
+  it 'dock second bike' do
     bike = Bike.new
     subject.dock(bike)
-    expect { subject.dock(bike)} .to be_working
+    expect(subject.dock(bike)).to eq [bike, bike]
   end
 
 
   it 'docks something' do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.bike).to eq bike
+    expect(subject.bike).to eq [bike]
   end
 
 end

@@ -8,11 +8,7 @@ class DockingStation
     end
 
   def release_bike
-    p "Bikes count:"
-    p @bikes.count
-    p @bikes
     fail "No bikes available" if @bikes.count == 0
-      p "didn't return"
       @bikes
   end
 
