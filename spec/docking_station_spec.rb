@@ -3,7 +3,7 @@ require 'docking_station'
 describe DockingStation do
   it "Starts with 20 bikes in docking station" do
     bike = Bike.new
-    20.times { subject.dock(bike) }
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock(bike) }
     expect{subject.dock(bike)}.to raise_error("Dock is full")
   end
 
