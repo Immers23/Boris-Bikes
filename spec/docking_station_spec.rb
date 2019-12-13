@@ -37,12 +37,29 @@ describe DockingStation do
     expect(subject.dock(bike)).to eq [bike, bike]
   end
 
-  it 'reports broken bike' do
+  # it 'reports broken bike' do
+  #   bike = Bike.new
+  #   docking_station = DockingStation.new
+  #   docking_station.broken_bike(bike)
+  #   bike = docking_station.release_bike
+  #   expect(bike.working?).to eq false
+  # end
+
+  it 'doesnt release broken bikes' do
     bike = Bike.new
     docking_station = DockingStation.new
     docking_station.broken_bike(bike)
-    bike = docking_station.release_bike
-    expect(bike.working?). to eq false
+    expect{docking_station.release_bike}.to raise_error("No working bikes in rack")
+  end
+
+  it 'doesnt release broken bikes but it releases working bikes' do
+    bike1 = Bike.new
+    bike2 = Bike.new
+    docking_station = DockingStation.new
+    docking_station.broken_bike(bike1)
+    docking_station.dock(bike2)
+    docking_station.release_bike
+    expect(docking_station.bikes).to eq [bike1]
   end
 
 

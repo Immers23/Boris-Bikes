@@ -12,7 +12,12 @@ class DockingStation
 
   def release_bike
     fail "No bikes available" if empty?
-      bikes.pop
+    @bikes.each_with_index do |bike, index|
+      if bike.working?
+        return @bikes.slice!(index)
+      end
+    end
+    raise("No working bikes in rack")
   end
 
   def dock(bike)
